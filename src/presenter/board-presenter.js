@@ -19,11 +19,14 @@ export default class TripPresenter {
   #pointsList = new TripEventsView();
   #sortComponent = new SortView();
   #noTaskComponent = new NoPointView();
+
   #pointPresenter = new Map();
+
   constructor(tripContainer, pointsModel) {
     this.#tripContainer = tripContainer;
     this.#pointsModel = pointsModel;
   }
+
   init() {
     this.#tripPoints = [...this.#pointsModel.point];
 
@@ -46,20 +49,24 @@ export default class TripPresenter {
   #renderNoPoints = () => {
     render(this.#noTaskComponent, this.#tripContainer, RenderPosition.AFTERBEGIN);
   };
+
   #renderPoints = (from, to) => {
     this.#tripPoints
       .slice(from, to)
       .forEach((point) => this.#renderPoint(point));
   };
+
   #renderPointList = () => {
     render(this.#pointsList, this.#tripContainer);
     this.#renderPoints(0, this.#tripPoints.length);
   };
+
   #renderPoint = (point) => {
     const pointPresenter = new PointPresenter(this.#pointsList.element, this.#handlePointChange, this.#handleModeChange);
     pointPresenter.init(point);
     this.#pointPresenter.set(point.id, pointPresenter);
   };
+
   #clearEventsList = () => {
     this.#pointPresenter.forEach((presenter) => presenter.destroy());
     this.#pointPresenter.clear();

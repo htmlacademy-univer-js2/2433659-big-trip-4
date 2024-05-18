@@ -32,6 +32,7 @@ export default class FilterView extends AbstractView {
   #filters = null;
   constructor(filters) {
     super();
+    this.#filters = filters;
   }
 
   get template() {

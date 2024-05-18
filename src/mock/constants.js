@@ -1,6 +1,5 @@
 const POINT_TYPES = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
 const OFFER_TITLES = ['Upgrade to a business class', 'Order Uber', 'Add lunch', 'Order train'];
-
 const DESCRIPTIONS = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'Cras aliquet varius magna, non porta ligula feugiat eget.',
@@ -13,19 +12,21 @@ const DESCRIPTIONS = [
   'Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus.',
   'In rutrum ac purus sit amet tempus.'
 ];
-
 const DESTINATIONS_NAMES = ['Ekaterinburg', 'Chelyabinsk', 'Berezovski', 'Moscow', 'Saint-Petersburg', 'Kazan', 'Toronto', 'Washington', 'Raleigh', 'Paris', 'Rim'];
-
 const offerPrice = {
   MIN: 10,
   MAX: 50
+};
+
+const picturesCount = {
+  MIN: 1,
+  MAX: 4
 };
 
 const tripPrice = {
   MIN: 100,
   MAX: 1500
 };
-
 const FilterType = {
   EVERYTHING: 'everything',
   FUTURE: 'future',
@@ -34,8 +35,12 @@ const FilterType = {
 
 const SortType = {
   DAY: 'day',
+  EVENT: 'event',
   TIME: 'time',
   PRICE: 'price',
+  OFFER: 'offer',
 };
 
-export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType };
+const maxPoints = 8;
+
+export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType, picturesCount, maxPoints };

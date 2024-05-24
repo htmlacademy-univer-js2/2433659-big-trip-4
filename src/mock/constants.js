@@ -43,6 +43,8 @@ const SortType = {
   OFFER: 'offer',
 };
 
+const maxPoints = 8;
+
 const UpdateType = {
   PATCH: 'PATCH',
   MINOR: 'MINOR',

@@ -23,7 +23,7 @@ export default class PointPresenter {
   #destinations = null;
   #offers = null;
 
-   constructor(pointsListContainer, pointsModel, changeData, changeMode, destinationsModel, offersModel) {
+  constructor(pointsListContainer, pointsModel, changeData, changeMode, destinationsModel, offersModel) {
     this.#pointsListContainer = pointsListContainer;
     this.#pointsModel = pointsModel;
     this.#changeData = changeData;
@@ -137,4 +137,5 @@ export default class PointPresenter {
       point,
     );
   };
+
 }

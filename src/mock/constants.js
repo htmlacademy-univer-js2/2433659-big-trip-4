@@ -13,6 +13,7 @@ const DESCRIPTIONS = [
   'In rutrum ac purus sit amet tempus.'
 ];
 const DESTINATIONS_NAMES = ['Ekaterinburg', 'Chelyabinsk', 'Berezovski', 'Moscow', 'Saint-Petersburg', 'Kazan', 'Toronto', 'Washington', 'Raleigh', 'Paris', 'Rim'];
+
 const offerPrice = {
   MIN: 10,
   MAX: 50
@@ -27,6 +28,7 @@ const tripPrice = {
   MIN: 100,
   MAX: 1500
 };
+
 const FilterType = {
   EVERYTHING: 'everything',
   FUTURE: 'future',
@@ -41,4 +43,18 @@ const SortType = {
   OFFER: 'offer',
 };
 
-export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType, picturesCount };
+const maxPoints = 8;
+
+const UpdateType = {
+  PATCH: 'PATCH',
+  MINOR: 'MINOR',
+  MAJOR: 'MAJOR',
+};
+
+const UserAction = {
+  UPDATE_POINT: 'UPDATE_POINT',
+  ADD_POINT: 'ADD_POINT',
+  DELETE_POINT: 'DELETE_POINT',
+};
+
+export { POINT_TYPES, OFFER_TITLES, DESCRIPTIONS, DESTINATIONS_NAMES, tripPrice, offerPrice, FilterType, SortType, picturesCount, maxPoints, UpdateType, UserAction };

@@ -1,10 +1,9 @@
-import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
-import { POINT_TYPES } from '../mock/constants.js';
-import { getDateTime } from '../utils/point.js';
 import dayjs from 'dayjs';
 import flatpickr from 'flatpickr';
 import he from 'he';
-
+import AbstractStatefulView from '../framework/view/abstract-stateful-view.js';
+import { TypesOfPoints } from '../mock/const.js';
+import { getDateTime } from '../utils/point.js';
 import 'flatpickr/dist/flatpickr.min.css';
 
 const BLANK_POINT = {
@@ -14,10 +13,10 @@ const BLANK_POINT = {
   destination: 1,
   isFavorite: false,
   offers: [],
-  type: POINT_TYPES.TAXI,
+  type: TypesOfPoints.TAXI,
 };
 
-const renderPictures = (pictures) => {
+const renderOfPictures = (pictures) => {
   let result = '';
   pictures.forEach((picture) => {
     result = `${result}<img class="event__photo" src="${picture.src}" alt="${picture.description}">`;
@@ -25,7 +24,7 @@ const renderPictures = (pictures) => {
   return result;
 };
 
-const renderNames = (destinations) => {
+const renderOfNames = (destinations) => {
   let result = '';
   destinations.forEach((destination) => {
     result = `${result}
@@ -34,7 +33,7 @@ const renderNames = (destinations) => {
   return result;
 };
 
-const renderOffers = (allOffers, checkedOffers, isDisabled) => {
+const renderOfOffers = (allOffers, checkedOffers, isDisabled) => {
   let result = '';
   allOffers.forEach((offer) => {
     const checked = checkedOffers.includes(offer.id) ? 'checked' : '';
@@ -51,7 +50,7 @@ const renderOffers = (allOffers, checkedOffers, isDisabled) => {
   return result;
 };
 
-const renderDate = (dateFrom, dateTo, isDisabled) => (
+const renderOfDate = (dateFrom, dateTo, isDisabled) => (
   `<div class="event__field-group  event__field-group--time">
     <label class="visually-hidden" for="event-start-time-1">From</label>
     <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${getDateTime(dateFrom)}"
@@ -63,7 +62,7 @@ const renderDate = (dateFrom, dateTo, isDisabled) => (
   </div>`
 );
 
-const renderType = (currentType, isDisabled) => Object.values(POINT_TYPES).map((type) => `<div class="event__type-item">
+const renderOfType = (currentType, isDisabled) => Object.values(TypesOfPoints).map((type) => `<div class="event__type-item">
 <input id="event-type-${type}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}" ${currentType === type ? 'checked' : ''}
 ${isDisabled ? 'disabled' : ''}>
 <label class="event__type-label  event__type-label--${type}" for="event-type-${type}-1">${type}</label>
@@ -86,7 +85,7 @@ const createEditFormTemplate = (point, destinations, allOffers, isNewPoint) => {
         <div class="event__type-list">
           <fieldset class="event__type-group">
             <legend class="visually-hidden">Event type</legend>
-            ${renderType(type, isDisabled)}
+            ${renderOfType(type, isDisabled)}
           </fieldset>
         </div>
       </div>
@@ -97,10 +96,10 @@ const createEditFormTemplate = (point, destinations, allOffers, isNewPoint) => {
         <input class="event__input event__input--destination" id="event-destination-${destination}" type="text" name="event-destination"
         value="${currentDestination ? he.encode(currentDestination.name) : ''}" list="destination-list-1" ${isDisabled ? 'disabled' : ''}>
         <datalist id="destination-list-1">
-        ${renderNames(destinations)}
+        ${renderOfNames(destinations)}
         </datalist>
       </div>
-      ${renderDate(dateFrom, dateTo, isDisabled)}
+      ${renderOfDate(dateFrom, dateTo, isDisabled)}
       <div class="event__field-group  event__field-group--price">
         <label class="event__label" for="event-price-1">
           <span class="visually-hidden">Price</span>
@@ -122,7 +121,7 @@ const createEditFormTemplate = (point, destinations, allOffers, isNewPoint) => {
       <section class="event__section  event__section--offers">
         <h3 class="event__section-title  event__section-title--offers">Offers</h3>
         <div class="event__available-offers">
-        ${renderOffers(offersByType.offers, offers, isDisabled)}
+        ${renderOfOffers(offersByType.offers, offers, isDisabled)}
         </div>
       </section>
 
@@ -131,7 +130,7 @@ const createEditFormTemplate = (point, destinations, allOffers, isNewPoint) => {
         <p class="event__destination-description">${currentDestination.description}</p>
         <div class="event__photos-container">
           <div class="event__photos-tape">
-          ${renderPictures(currentDestination.pictures)}
+          ${renderOfPictures(currentDestination.pictures)}
           </div>
         </div>
         </section>` : ''}
@@ -145,9 +144,7 @@ export default class EditFormView extends AbstractStatefulView {
   #offers = null;
   #isNewPoint = null;
   #offersByType = null;
-
   #dateTo = null;
-
   #datepicker = null;
 
   constructor({ point = BLANK_POINT, destination, offers, isNewPoint }) {

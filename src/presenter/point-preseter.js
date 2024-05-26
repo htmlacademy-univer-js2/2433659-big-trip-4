@@ -1,39 +1,35 @@
 import { render, replace, remove } from '../framework/render.js';
 import WaypointView from '../view/waypoint-view.js';
-import EditFormView from '../view/edit-form-view.js';
+import EditFormView from '../view/create-form-view.js';
 import { isEscKeyDown } from '../utils/common.js';
-import { Mode, UpdateType, UserAction } from '../mock/constants.js';
+import { Mode, TypeOfUpdate, UserAction } from '../mock/const.js';
 
 export default class PointPresenter {
 
   #point = null;
   #mode = Mode.DEFAULT;
-
-  #pointsListContainer = null;
+  #containerOfPointsList = null;
   #changeData = null;
   #changeMode = null;
-
   #pointComponent = null;
   #pointEditComponent = null;
-
-  #destinationsModel = null;
-  #offersModel = null;
-
+  #modelOfDestinations = null;
+  #modelOfOffers = null;
   #destinations = null;
   #offers = null;
 
-  constructor(pointsListContainer, changeData, changeMode, destinationsModel, offersModel) {
-    this.#pointsListContainer = pointsListContainer;
+  constructor(containerOfPointsList, changeData, changeMode, modelOfDestinations, modelOfOffers) {
+    this.#containerOfPointsList = containerOfPointsList;
     this.#changeData = changeData;
     this.#changeMode = changeMode;
-    this.#destinationsModel = destinationsModel;
-    this.#offersModel = offersModel;
+    this.#modelOfDestinations = modelOfDestinations;
+    this.#modelOfOffers = modelOfOffers;
   }
 
   init = (point) => {
     this.#point = point;
-    this.#destinations = [...this.#destinationsModel.destinations];
-    this.#offers = [...this.#offersModel.offers];
+    this.#destinations = [...this.#modelOfDestinations.destinations];
+    this.#offers = [...this.#modelOfOffers.offers];
 
     const prevPointComponent = this.#pointComponent;
     const prevPointEditComponent = this.#pointEditComponent;
@@ -55,7 +51,7 @@ export default class PointPresenter {
     this.#pointEditComponent.setDeleteClickHandler(this.#handleDeleteClick);
 
     if (prevPointComponent === null || prevPointEditComponent === null) {
-      render(this.#pointComponent, this.#pointsListContainer);
+      render(this.#pointComponent, this.#containerOfPointsList);
       return;
     }
 
@@ -146,7 +142,7 @@ export default class PointPresenter {
   #handleFormSubmit = (point) => {
     this.#changeData(
       UserAction.UPDATE_POINT,
-      UpdateType.MINOR,
+      TypeOfUpdate.MINOR,
       point,
     );
   };
@@ -158,7 +154,7 @@ export default class PointPresenter {
   #handleFavoriteClick = () => {
     this.#changeData(
       UserAction.UPDATE_POINT,
-      UpdateType.PATCH,
+      TypeOfUpdate.PATCH,
       { ...this.#point, isFavorite: !this.#point.isFavorite },
     );
   };
@@ -166,7 +162,7 @@ export default class PointPresenter {
   #handleDeleteClick = (point) => {
     this.#changeData(
       UserAction.DELETE_POINT,
-      UpdateType.MINOR,
+      TypeOfUpdate.MINOR,
       point,
     );
   };

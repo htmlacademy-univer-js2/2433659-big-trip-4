@@ -1,14 +1,14 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { FilterType } from '../mock/constants.js';
+import { TypeOfFilter } from '../mock/const.js';
 
 const NoPointsTextType = {
-  [FilterType.EVERYTHING]: 'Click New Event to create your first point',
-  [FilterType.PAST]: 'There are no past events now',
-  [FilterType.FUTURE]: 'There are no future events now',
+  [TypeOfFilter.EVERYTHING]: 'Click New Event to create your first point',
+  [TypeOfFilter.PAST]: 'There are no past events now',
+  [TypeOfFilter.FUTURE]: 'There are no future events now',
 };
 
-const createNoPointTemplate = (filterType) => {
-  const noTaskTextValue = NoPointsTextType[filterType];
+const createTemplateNoPoint = (typeOfFilter) => {
+  const noTaskTextValue = NoPointsTextType[typeOfFilter];
 
   return (
     `<p class="trip-events__msg">${noTaskTextValue}</p>`
@@ -16,15 +16,15 @@ const createNoPointTemplate = (filterType) => {
 };
 
 export default class NoPointView extends AbstractView {
-  #filterType = null;
+  #typeOfFilter = null;
 
-  constructor(filterType) {
+  constructor(typeOfFilter) {
     super();
-    this.#filterType = filterType;
+    this.#typeOfFilter = typeOfFilter;
   }
 
   get template() {
-    return createNoPointTemplate(this.#filterType);
+    return createTemplateNoPoint(this.#typeOfFilter);
   }
 
 }

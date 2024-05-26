@@ -1,27 +1,24 @@
-import { render, remove, RenderPosition } from '../framework/render.js';
-import EditFormView from '../view/edit-form-view.js';
+import { render, remove, PositionOfRender } from '../framework/render.js';
+import EditFormView from '../view/create-form-view.js';
 import { isEscKeyDown } from '../utils/common.js';
-import { UpdateType, UserAction } from '../mock/constants.js';
+import { TypeOfUpdate, UserAction } from '../mock/const.js';
 
 export default class PointNewPresenter {
 
-  #pointsListContainer = null;
+  #containerOfPointsList = null;
   #changeData = null;
-
   #destroyCallback = null;
   #pointEditComponent = null;
-
-  #destinationsModel = null;
-  #offersModel = null;
-
+  #modelOfDestinations = null;
+  #modelOfOffers = null;
   #destinations = null;
   #offers = null;
 
-  constructor(pointsListContainer, changeData, destinationsModel, offersModel) {
-    this.#pointsListContainer = pointsListContainer;
+  constructor(containerOfPointsList, changeData, modelOfDestinations, modelOfOffers) {
+    this.#containerOfPointsList = containerOfPointsList;
     this.#changeData = changeData;
-    this.#destinationsModel = destinationsModel;
-    this.#offersModel = offersModel;
+    this.#modelOfDestinations = modelOfDestinations;
+    this.#modelOfOffers = modelOfOffers;
   }
 
   init = (callback) => {
@@ -30,8 +27,8 @@ export default class PointNewPresenter {
       return;
     }
 
-    this.#destinations = [...this.#destinationsModel.destinations];
-    this.#offers = [...this.#offersModel.offers];
+    this.#destinations = [...this.#modelOfDestinations.destinations];
+    this.#offers = [...this.#modelOfOffers.offers];
 
     this.#pointEditComponent = new EditFormView({
       destination: this.#destinations,
@@ -42,7 +39,7 @@ export default class PointNewPresenter {
     this.#pointEditComponent.setFormSubmitHandler(this.#handleFormSubmit);
     this.#pointEditComponent.setDeleteClickHandler(this.#handleDeleteClick);
 
-    render(this.#pointEditComponent, this.#pointsListContainer, RenderPosition.AFTERBEGIN);
+    render(this.#pointEditComponent, this.#containerOfPointsList, PositionOfRender.AFTERBEGIN);
     document.addEventListener('keydown', this.#onEscKeyDown);
   };
 
@@ -85,7 +82,7 @@ export default class PointNewPresenter {
   #handleFormSubmit = (point) => {
     this.#changeData(
       UserAction.ADD_POINT,
-      UpdateType.MINOR,
+      TypeOfUpdate.MINOR,
       point,
     );
   };

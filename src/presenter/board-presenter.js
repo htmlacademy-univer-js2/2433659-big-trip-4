@@ -4,7 +4,7 @@ import TripEventsView from '../view/trip-events-view.js';
 import NoPointView from '../view/no-point-view.js';
 import PointPresenter from './point-presenter.js';
 import PointNewPresenter from './new-point-presenter.js';
-import { TypeOfSort, TypeOfFilter, UserAction, TypeOfUpdate, Time, TypeOfUpdateLimit } from '../mock/const.js';
+import { TypeOfSort, TypeOfFilter, UserAction, TypeOfUpdate, LimitOfTime, } from '../mock/const.js';
 import { sorting } from '../utils/sorting.js';
 import { filter } from '../utils/filter.js';
 import LoadingView from '../view/loading-view.js';
@@ -160,12 +160,12 @@ export default class TripPresenter {
     this.#pointPresenter.forEach((presenter) => presenter.resetView());
   };
 
-  #handleTypeOfSortChange = (TypeOfSort) => {
-    if (this.#currentTypeOfSort === TypeOfSort) {
+  #handleTypeOfSortChange = (typeOfSort) => {
+    if (this.#currentTypeOfSort === typeOfSort) {
       return;
     }
 
-    this.#currentTypeOfSort = TypeOfSort;
+    this.#currentTypeOfSort = typeOfSort;
     this.#clearAll();
     this.#renderBoard();
   };

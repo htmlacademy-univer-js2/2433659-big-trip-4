@@ -60,11 +60,11 @@ export default class FilterPresenter {
     this.init();
   };
 
-  #handleTypeOfFilterChange = (TypeOfFilter) => {
-    if (this.#modelOfFilter.filter === TypeOfFilter) {
+  #handleTypeOfFilterChange = (typeOfFilter) => {
+    if (this.#modelOfFilter.filter === typeOfFilter) {
       return;
     }
 
-    this.#modelOfFilter.setFilter(TypeOfUpdate.MAJOR, TypeOfFilter);
+    this.#modelOfFilter.setFilter(TypeOfUpdate.MAJOR, typeOfFilter);
   };
 }

@@ -1,10 +1,10 @@
-import { FilterType } from '../mock/constants';
+import { TypeOfFilter } from '../mock/const';
 import { isPointFuture, isPointPast } from './point';
 
 const filter = {
-  [FilterType.EVERYTHING]: (points) => points,
-  [FilterType.FUTURE]: (points) => points.filter((point) => isPointFuture(point)),
-  [FilterType.PAST]: (points) => points.filter((point) => isPointPast(point))
+  [TypeOfFilter.EVERYTHING]: (points) => points,
+  [TypeOfFilter.FUTURE]: (points) => points.filter((point) => isPointFuture(point)),
+  [TypeOfFilter.PAST]: (points) => points.filter((point) => isPointPast(point))
 };
 
 export { filter };

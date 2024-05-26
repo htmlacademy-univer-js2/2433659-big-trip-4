@@ -1,7 +1,7 @@
 import Observable from '../framework/observable.js';
-import { UpdateType } from '../mock/constants.js';
+import { TypeOfUpdate } from '../mock/const.js';
 
-export default class pointsModel extends Observable {
+export default class ModelOfPoints extends Observable {
   #pointsApiService = null;
   #points = [];
   #destinations = [];
@@ -18,7 +18,7 @@ export default class pointsModel extends Observable {
       this.#points = [];
     }
 
-    this._notify(UpdateType.INIT);
+    this._notify(TypeOfUpdate.INIT);
 
   };
 
@@ -26,7 +26,7 @@ export default class pointsModel extends Observable {
     return this.#points;
   }
 
-  updatePoint = async (updateType, update) => {
+  updatePoint = async (typeOfUpdate, update) => {
     const index = this.#points.findIndex((point) => point.id === update.id);
 
     if (index === -1) {
@@ -41,41 +41,34 @@ export default class pointsModel extends Observable {
         updatedPoint,
         ...this.#points.slice(index + 1),
       ];
-      this._notify(updateType, updatedPoint);
+      this._notify(typeOfUpdate, updatedPoint);
     } catch (err) {
       throw new Error('Can\'t update point');
     }
   };
 
-  addPoint = async (updateType, update) => {
-    try {
-      const response = await this.#pointsApiService.addPoint(update);
-      const newPoint = this.#adaptToClient(response);
-      this.#points.unshift(newPoint);
-      this._notify(updateType, newPoint);
-    } catch (err) {
-      throw new Error('Can\'t add point');
-    }
+  addPoint = (typeOfUpdate, update) => {
+    this.#points = [
+      update,
+      ...this.#points,
+    ];
+
+    this._notify(typeOfUpdate, update);
   };
 
-  deletePoint = async (updateType, update) => {
+  deletePoint = (typeOfUpdate, update) => {
     const index = this.#points.findIndex((point) => point.id === update.id);
 
     if (index === -1) {
       throw new Error('Can\'t delete unexisting point');
     }
 
-    try {
-      await this.#pointsApiService.deletePoint(update);
-      this.#points = [
-        ...this.#points.slice(0, index),
-        ...this.#points.slice(index + 1),
-      ];
-      this._notify(updateType);
-    }
-    catch (err) {
-      throw new Error('Can\'t delete point');
-    }
+    this.#points = [
+      ...this.#points.slice(0, index),
+      ...this.#points.slice(index + 1),
+    ];
+
+    this._notify(typeOfUpdate);
   };
 
   #adaptToClient = (point) => {

@@ -2,7 +2,7 @@ import { render, PositionOfRender, remove } from '../framework/render.js';
 import SortView from '../view/sort-view.js';
 import TripEventsView from '../view/trip-events-view.js';
 import NoPointView from '../view/no-point-view.js';
-import PointPresenter from './point-presenter.js';
+import PointPresenter from '../presenter/point-preseter.js';
 import PointNewPresenter from './new-point-presenter.js';
 import { TypeOfSort, TypeOfFilter, UserAction, TypeOfUpdate, LimitOfTime, } from '../mock/const.js';
 import { sorting } from '../utils/sorting.js';

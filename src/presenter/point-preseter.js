@@ -1,5 +1,5 @@
 import { render, replace, remove } from '../framework/render.js';
-import WaypointView from '../view/waypoint-view.js';
+import WaypointView from '../view/way-point-view.js';
 import EditFormView from '../view/create-form-view.js';
 import { isEscKeyDown } from '../utils/common.js';
 import { Mode, TypeOfUpdate, UserAction } from '../mock/const.js';

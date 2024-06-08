@@ -6,7 +6,7 @@ import ModelOfDestinations from './models/destinations-model.js';
 import TripPresenter from './presenter/board-presenter.js';
 import FilterPresenter from './presenter/filter-presenter.js';
 import NewPointButtonView from './view/new-point-button-view.js';
-import PointsApiService from './points-api-service.js';
+import PointsApiService from './models/points-api-service.js';
 import { AUTHORIZATION, END_POINT } from './mock/const.js';
 
 const siteMainElement = document.querySelector('.page-main');

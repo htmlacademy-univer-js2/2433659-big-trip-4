@@ -20,7 +20,7 @@ const TypeOfFilter = {
   PAST: 'past',
 };
 
-const TupeOfSort = {
+const TypeOfSort = {
   DAY: 'day',
   EVENT: 'event',
   TIME: 'time',
@@ -63,7 +63,7 @@ export {
   AUTHORIZATION,
   END_POINT,
   TypeOfFilter,
-  TupeOfSort,
+  TypeOfSort,
   TypeOfUpdate,
   UserAction,
   Method,

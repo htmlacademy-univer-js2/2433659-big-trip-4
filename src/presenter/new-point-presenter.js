@@ -69,7 +69,7 @@ export default class PointNewPresenter {
       });
     };
 
-    this.#pointEditComponent.shake(resetFormState);
+    this.#pointEditComponent?.shake(resetFormState);
   };
 
   #onEscKeyDown = (evt) => {

@@ -35,18 +35,18 @@ const getHours = (hours) => {
   return hours;
 };
 
-const getMinutes = (minuts) => {
-  while (minuts > 59) {
-    minuts -= 60;
+const getMinutes = (minutes) => {
+  while (minutes > 59) {
+    minutes -= 60;
   }
 
-  if (minuts < 10 && minuts !== 0) {
-    minuts = `0${minuts}M`;
+  if (minutes < 10 && minutes !== 0) {
+    minutes = `0${minutes}M`;
   }
   else {
-    minuts = `${minuts}M`;
+    minutes = `${minutes}M`;
   }
-  return minuts;
+  return minutes;
 };
 
 export { isPointFuture, isPointPast, getDateTime, getDate, getDays, getHours, getMinutes };

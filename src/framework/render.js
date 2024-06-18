@@ -1,7 +1,7 @@
 import AbstractView from './view/abstract-view.js';
 
 /** @enum {string} Перечисление возможных позиций для отрисовки */
-const PositionOfRender = {
+const RenderPosition = {
   BEFOREBEGIN: 'beforebegin',
   AFTERBEGIN: 'afterbegin',
   BEFOREEND: 'beforeend',
@@ -26,7 +26,7 @@ function createElement(template) {
  * @param {HTMLElement} container Элемент в котором будет отрисован компонент
  * @param {string} place Позиция компонента относительно контейнера. По умолчанию - `beforeend`
  */
-function render(component, container, place = PositionOfRender.BEFOREEND) {
+function render(component, container, place = RenderPosition.BEFOREEND) {
   if (!(component instanceof AbstractView)) {
     throw new Error('Can render only components');
   }
@@ -77,4 +77,4 @@ function remove(component) {
   component.removeElement();
 }
 
-export { PositionOfRender, createElement, render, replace, remove };
+export {RenderPosition, createElement, render, replace, remove};

@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
-* Студент: [Александра Долгих](https://up.htmlacademy.ru/univer-js2/4/user/2433659).
-* Наставник: `Богдан Волик`.
+* Студент: [Долгих Александра](https://github.com/Alexandra-Dolgih/2433659-big-trip-4).
+* Наставник: [Богдан Волик]
 
 ---
 
@@ -48,5 +48,5 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на профессиональном курсе «[JavaScript. Архитектура клиентских приложений](https://htmlacademy.ru/intensive/ecmascript)» от [HTML Academy](https://htmlacademy.ru).
 
-[check-image]: https://github.com/htmlacademy-ecmascript/2433659-big-trip-4/workflows/Project%20check/badge.svg?branch=master
-[check-url]: https://github.com/htmlacademy-ecmascript/2433659-big-trip-4/actions
+[check-image]: https://github.com/htmlacademy-ecmascript/2431705-big-trip-4/workflows/Project%20check/badge.svg?branch=master
+[check-url]: https://github.com/htmlacademy-ecmascript/2431705-big-trip-4/actions

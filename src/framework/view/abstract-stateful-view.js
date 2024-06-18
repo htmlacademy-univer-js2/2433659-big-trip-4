@@ -39,13 +39,13 @@ export default class AbstractStatefulView extends AbstractView {
 
   /** Метод для перерисовки элемента */
   #rerenderElement() {
-    const prevElement = this.element;
-    const parent = prevElement.parentElement;
+    const preElement = this.element;
+    const parent = preElement.parentElement;
     this.removeElement();
 
     const newElement = this.element;
 
-    parent.replaceChild(newElement, prevElement);
+    parent.replaceChild(newElement, preElement);
 
     this._restoreHandlers();
   }
